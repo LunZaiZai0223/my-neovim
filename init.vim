@@ -56,6 +56,9 @@ set clipboard=unnamedplus
 set noswapfile
 set nobackup
 
+" add cursorline
+set cursorline
+
 set fileencoding=utf-8
 
 " set signcolumn=number
@@ -144,6 +147,8 @@ nnoremap <leader>h :wincmd h<Cr>
 nnoremap <silent><leader>[ :BufferLineCyclePrev<Cr>
 nnoremap <silent><leader>] :BufferLineCycleNext<Cr>
 nnoremap <silent><leader>q :bdelete<Cr>
+" toggle hlsearch
+nnoremap <leader>n :set hlsearch!<CR>
 
 " To always use the snazzy color scheme 
 colorscheme Nordfox
