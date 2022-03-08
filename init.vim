@@ -61,6 +61,8 @@ set cursorline
 
 set fileencoding=utf-8
 
+" cursor blinking
+set guicursor=a:blinkon100
 " set signcolumn=number
 
 call plug#begin('~/.config/nvim/plugged')
