@@ -136,6 +136,12 @@ Plug 'folke/lsp-colors.nvim'
 " Surround
 Plug 'tpope/vim-surround'
 
+" Null-ls
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
+" Spell
+Plug 'kamykn/spelunker.vim'
+
 call plug#end()
 
 lua require('lun')
