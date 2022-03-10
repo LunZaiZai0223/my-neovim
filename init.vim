@@ -139,8 +139,11 @@ Plug 'tpope/vim-surround'
 " Null-ls
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
-" Spell
+" Check Spelling
 Plug 'kamykn/spelunker.vim'
+
+" Trouble
+Plug 'folke/trouble.nvim'
 
 call plug#end()
 
@@ -157,6 +160,8 @@ nnoremap <silent><leader>] :BufferLineCycleNext<Cr>
 nnoremap <silent><leader>q :bdelete<Cr>
 " toggle hlsearch
 nnoremap <leader>n :set hlsearch!<CR>
+" toggle trouble in current file
+nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
 
 " To always use the snazzy color scheme 
 colorscheme Nordfox
