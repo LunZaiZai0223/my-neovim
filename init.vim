@@ -50,7 +50,7 @@ set smartcase
 set noshowmode
 
 " use system clipboard
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " no swap file
 set noswapfile
