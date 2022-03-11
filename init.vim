@@ -1,4 +1,6 @@
-language en_US
+" 解決複製中文後無法貼上的問題
+" https://github.com/neovim/neovim/issues/5683
+lang en_US.UTF-8
 
 " enables syntax highlighting
 syntax on
@@ -59,6 +61,7 @@ set nobackup
 " add cursorline
 set cursorline
 
+" 測試
 set fileencoding=utf-8
 
 " cursor blinking
