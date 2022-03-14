@@ -68,6 +68,12 @@ set fileencoding=utf-8
 set guicursor=a:blinkon100
 " set signcolumn=number
 
+" Folding
+set foldmethod=indent
+" No auto folding
+set nofoldenable
+
+" Plugin list
 call plug#begin('~/.config/nvim/plugged')
 
 " plugins will go here
