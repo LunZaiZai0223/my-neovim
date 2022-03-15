@@ -133,7 +133,7 @@ Plug 'numToStr/Comment.nvim'
 " Rainbow parentheses
 Plug 'p00f/nvim-ts-rainbow'
 
-" Shade screen 
+" Shade screen
 Plug 'sunjon/shade.nvim'
 
 " Color preview
@@ -154,6 +154,8 @@ Plug 'kamykn/spelunker.vim'
 " Trouble
 Plug 'folke/trouble.nvim'
 
+Plug 'ntpeters/vim-better-whitespace'
+
 call plug#end()
 
 lua require('lun')
@@ -171,7 +173,11 @@ nnoremap <silent><leader>q :bdelete<Cr>
 nnoremap <leader>n :set hlsearch!<CR>
 " toggle trouble in current file
 nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
+" toogle better whitespace
+nnoremap <leader>b :set list!<CR>
+let g:strip_whitespace_confirm=0
+let g:strip_whitelines_at_eof=1
+let g:strip_whitespace_on_save=1
 
-" To always use the snazzy color scheme 
+" To always use the snazzy color scheme
 colorscheme Nordfox
-
