@@ -61,7 +61,6 @@ set nobackup
 " add cursorline
 set cursorline
 
-" 測試
 set fileencoding=utf-8
 
 " cursor blinking
@@ -72,6 +71,8 @@ set guicursor=a:blinkon100
 set foldmethod=indent
 " No auto folding
 set nofoldenable
+
+set nospell
 
 " Plugin list
 call plug#begin('~/.config/nvim/plugged')
@@ -178,6 +179,12 @@ nnoremap <leader>b :set list!<CR>
 let g:strip_whitespace_confirm=0
 let g:strip_whitelines_at_eof=1
 let g:strip_whitespace_on_save=1
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
+" 更改快捷鍵
+nnoremap <leader>af mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F
+vnoremap <leader>mf :!eslint_d --stdin --fix-to-stdout<CR>gv
 
 " To always use the snazzy color scheme
 colorscheme Nordfox
