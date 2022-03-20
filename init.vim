@@ -165,6 +165,7 @@ lua require('lun')
 " remaps
 let mapleader = ' '
 nnoremap <C-p> :Telescope find_files<Cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>l :wincmd l<Cr>
 nnoremap <leader>h :wincmd h<Cr>
 nnoremap <silent><leader>[ :BufferLineCyclePrev<Cr>
@@ -185,6 +186,8 @@ let g:syntastic_javascript_eslint_exec = 'eslint_d'
 " 更改快捷鍵
 nnoremap <leader>af mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F
 vnoremap <leader>mf :!eslint_d --stdin --fix-to-stdout<CR>gv
+
+nnoremap <Leader>ds :lua require'telescope.builtin'.lsp_document_symbols()
 
 " To always use the snazzy color scheme
 colorscheme Nordfox
