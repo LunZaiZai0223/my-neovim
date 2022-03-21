@@ -166,8 +166,8 @@ lua require('lun')
 let mapleader = ' '
 nnoremap <C-p> :Telescope find_files<Cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>l :wincmd l<Cr>
-nnoremap <leader>h :wincmd h<Cr>
+nnoremap <C-l> :wincmd l<Cr>
+nnoremap <C-h> :wincmd h<Cr>
 nnoremap <silent><leader>[ :BufferLineCyclePrev<Cr>
 nnoremap <silent><leader>] :BufferLineCycleNext<Cr>
 nnoremap <silent><leader>q :bdelete<Cr>
