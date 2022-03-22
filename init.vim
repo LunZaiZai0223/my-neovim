@@ -170,7 +170,8 @@ nnoremap <C-l> :wincmd l<Cr>
 nnoremap <C-h> :wincmd h<Cr>
 nnoremap <silent><leader>[ :BufferLineCyclePrev<Cr>
 nnoremap <silent><leader>] :BufferLineCycleNext<Cr>
-nnoremap <silent><leader>q :bdelete<Cr>
+" 關掉 buffer 不顯示奇怪錯誤
+nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
 " toggle hlsearch
 nnoremap <leader>n :set hlsearch!<CR>
 " toggle trouble in current file

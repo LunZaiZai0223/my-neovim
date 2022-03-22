@@ -4,7 +4,7 @@ require('bufferline').setup {
     modified_icon = '~',
     offsets = {
     {
-        filetype = "NvimTree", 
+        filetype = "NvimTree",
         text = "File Explorer",
         text_align = "center",
         highlight = "NvimTreeNormal"
