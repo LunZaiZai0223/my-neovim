@@ -41,6 +41,11 @@ local luasnip = require 'luasnip'
 local lspkind = require('lspkind')
 -- nvim-cmp setup
 local cmp = require 'cmp'
+
+-- spell cmp
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -81,6 +86,7 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },
+    { name = "spell" },
     { name = 'buffer', keyword_length = 5},
   },
     formatting = {
@@ -91,6 +97,7 @@ cmp.setup {
         buffer = '[buf]',
         nvim_lsp = '[LSP]',
         path = '[path]',
+        spell = '[SPELL]',
       },
       -- The function below will be called before any actual modifications from lspkind
       -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))

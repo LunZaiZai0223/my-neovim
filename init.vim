@@ -101,6 +101,9 @@ Plug 'kyazdani42/nvim-web-devicons'
 " lsp
 Plug 'neovim/nvim-lspconfig'
 
+" lsp better signature
+Plug 'ray-x/lsp_signature.nvim'
+
 " Autocompletion
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -110,6 +113,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'onsails/lspkind-nvim'
+Plug 'f3fora/cmp-spell'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
