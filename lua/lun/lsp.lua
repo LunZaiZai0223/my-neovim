@@ -86,17 +86,17 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },
-    { name = "spell" },
     { name = 'buffer', keyword_length = 5},
+    { name = "spell" },
   },
     formatting = {
     format = lspkind.cmp_format({
       mode = 'symbol_text',
       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       menu = {
-        buffer = '[buf]',
+        buffer = '[BUF]',
         nvim_lsp = '[LSP]',
-        path = '[path]',
+        path = '[PATH]',
         spell = '[SPELL]',
       },
       -- The function below will be called before any actual modifications from lspkind
