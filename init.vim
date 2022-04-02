@@ -15,6 +15,7 @@ set expandtab
 
 " enable autoindents
 set smartindent
+set autoindent
 
 " number of spaces used for autoindents
 set shiftwidth=2
@@ -57,6 +58,7 @@ set clipboard=unnamed
 " no swap file
 set noswapfile
 set nobackup
+set nowrap
 
 " add cursorline
 set cursorline
@@ -160,6 +162,8 @@ Plug 'kamykn/spelunker.vim'
 Plug 'folke/trouble.nvim'
 
 Plug 'ntpeters/vim-better-whitespace'
+
+Plug 'tami5/lspsaga.nvim'
 
 call plug#end()
 
