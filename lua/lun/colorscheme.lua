@@ -1,26 +1,30 @@
-local nightfox = require('nightfox')
+-- https://github.com/EdenEast/nightfox.nvim
 
--- This function set the configuration of nightfox. If a value is not passed in the setup function
--- it will be taken from the default configuration above
-nightfox.setup({
-  fox = "nordfox", -- change the colorscheme to use nordfox
-  styles = {
-    comments = "italic", -- change style of comments to be italic
-    keywords = "bold", -- change style of keywords to be bold
-    functions = "italic,bold" -- styles can be a comma separated list
-  },
-  inverse = {
-    match_paren = true, -- inverse the highlighting of match_parens
-  },
-  colors = {
-    red = "#FF000", -- Override the red color for MAX POWER
-    bg_alt = "#000000",
-  },
-  hlgroups = {
-    TSPunctDelimiter = { fg = "${red}" }, -- Override a highlight group with the color red
-    LspCodeLens = { bg = "#000000", style = "italic" },
+local nightfox = require('nightfox')
+require('nightfox').setup({
+  options = {
+    -- Compiled file's destination location
+    compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+    compile_file_suffix = "_compiled", -- Compiled file suffix
+    transparent = true,    -- Disable setting background
+    terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+    dim_inactive = false,   -- Non focused panes set to alternative background
+    styles = {              -- Style to be applied to different syntax groups
+      comments = "italic",    -- Value is any valid attr-list value `:help attr-list`
+      functions = "bold",
+      keywords = "italic,bold",
+      numbers = "NONE",
+      strings = "NONE",
+      types = "italic,bold",
+      variables = "NONE",
+    },
+    inverse = {             -- Inverse highlight for different types
+      match_paren = true,
+      visual = true,
+      search = true,
+    },
   }
 })
 
--- Load the configuration set above and apply the colorscheme
-nightfox.load()
+-- setup must be called before loading
+vim.cmd("colorscheme terafox")

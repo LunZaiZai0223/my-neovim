@@ -74,7 +74,7 @@ set foldmethod=indent
 " No auto folding
 set nofoldenable
 
-set nospell
+set spell
 
 " Plugin list
 call plug#begin('~/.config/nvim/plugged')
@@ -140,9 +140,6 @@ Plug 'numToStr/Comment.nvim'
 " Rainbow parentheses
 Plug 'p00f/nvim-ts-rainbow'
 
-" Shade screen
-Plug 'sunjon/shade.nvim'
-
 " Color preview
 Plug 'norcalli/nvim-colorizer.lua'
 
@@ -163,7 +160,7 @@ Plug 'folke/trouble.nvim'
 
 Plug 'ntpeters/vim-better-whitespace'
 
-Plug 'tami5/lspsaga.nvim'
+Plug 'glepnir/lspsaga.nvim'
 
 call plug#end()
 
@@ -199,4 +196,4 @@ vnoremap <leader>mf :!eslint_d --stdin --fix-to-stdout<CR>gv
 nnoremap <Leader>ds :lua require'telescope.builtin'.lsp_document_symbols()
 
 " To always use the snazzy color scheme
-colorscheme Nordfox
+colorscheme Terafox
