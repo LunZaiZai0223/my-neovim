@@ -15,7 +15,7 @@ set expandtab
 
 " enable autoindents
 set smartindent
-set autoindent
+" set autoindent
 
 " number of spaces used for autoindents
 set shiftwidth=2
@@ -70,9 +70,13 @@ set guicursor=a:blinkon100
 " set signcolumn=number
 
 " Folding
-set foldmethod=indent
+" set foldmethod=indent
 " No auto folding
 set nofoldenable
+" set foldlevel=1
+" set foldclose=all
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 set spell
 
@@ -81,6 +85,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " plugins will go here
 Plug 'EdenEast/nightfox.nvim'
+Plug 'projekt0n/github-nvim-theme'
 
 " Telescope requires plenary to function
 Plug 'nvim-lua/plenary.nvim'
@@ -158,9 +163,7 @@ Plug 'kamykn/spelunker.vim'
 " Trouble
 Plug 'folke/trouble.nvim'
 
-Plug 'ntpeters/vim-better-whitespace'
-
-Plug 'glepnir/lspsaga.nvim'
+Plug 'frazrepo/vim-rainbow'
 
 call plug#end()
 
@@ -175,6 +178,9 @@ nnoremap <C-l> :wincmd l<Cr>
 nnoremap <C-h> :wincmd h<Cr>
 nnoremap <silent><leader>[ :BufferLineCyclePrev<Cr>
 nnoremap <silent><leader>] :BufferLineCycleNext<Cr>
+
+let g:rainbow_active = 1
+
 " 關掉 buffer 不顯示奇怪錯誤
 nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
 " toggle hlsearch
@@ -196,4 +202,5 @@ vnoremap <leader>mf :!eslint_d --stdin --fix-to-stdout<CR>gv
 nnoremap <Leader>ds :lua require'telescope.builtin'.lsp_document_symbols()
 
 " To always use the snazzy color scheme
-colorscheme Terafox
+colorscheme TeraFox
+" colorscheme github_dark
