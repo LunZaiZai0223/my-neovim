@@ -44,7 +44,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
         underline = false,
         virtual_text = true,
         -- Enable virtual text, override spacing to 4
-        virtual_text = { spacing = 4, prefix = "»", },
+        virtual_text = { spacing = 4 },
         -- Use a function to dynamically turn signs off
         -- and on, using buffer local variables
         signs = true,

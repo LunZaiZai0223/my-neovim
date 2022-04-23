@@ -21,7 +21,8 @@ set smartindent
 set shiftwidth=2
 
 " adds line numbers
-set number
+" set number
+set relativenumber
 
 " columns used for the line number
 set numberwidth=4
@@ -37,7 +38,7 @@ set splitright
 set hidden
 
 " start scrolling when 8 lines from top or bottom
-set scrolloff=10
+set scrolloff=8
 
 " Save undo history
 set undofile
@@ -80,7 +81,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 
 set spell
 
-" Plugin list
+" hi Visual  guifg=#000000 guibg=#FFFFFF gui=none
 call plug#begin('~/.config/nvim/plugged')
 
 " plugins will go here
@@ -141,6 +142,8 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Quickly comment
 Plug 'numToStr/Comment.nvim'
+" https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 " Rainbow parentheses
 Plug 'p00f/nvim-ts-rainbow'
@@ -164,6 +167,9 @@ Plug 'kamykn/spelunker.vim'
 Plug 'folke/trouble.nvim'
 
 Plug 'frazrepo/vim-rainbow'
+
+"JSDoc
+Plug 'kkoomen/vim-doge'
 
 call plug#end()
 
