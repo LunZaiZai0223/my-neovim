@@ -9,6 +9,14 @@ vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<C
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+
+  -- https://www.reddit.com/r/neovim/comments/jy08md/multiple_languageserver_choose_format/
+  -- 如果是特定的 lsp server 就不要用 lsp 內建的 format，而是用 null-ls 設定的
+  if client.name == "tsserver" then                                                                             
+    --   client.server_capabilities.document_formatting = false -- 0.7 and earlier
+    client.resolved_capabilities.document_formatting = false
+  end
+
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -147,17 +155,90 @@ cmp.setup {
   }
 }
 
+-- languags setup
+-- NOTE: 如果遇到 LSP 錯誤就看/Users/liuweilun/.cache/nvim/lsp.log
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'tsserver', 'cssls', 'emmet_ls', 'vuels', 'jsonls' }
+local servers = { 'tsserver', 'cssls', 'emmet_ls', 'vuels', 'jsonls', 'angularls' }
 
-for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      -- This will be the default in neovim 0.7+
-      debounce_text_changes = 150,
-    }
+-- for _, lsp in pairs(servers) do
+--   require('lspconfig')[lsp].setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     flags = {
+--       -- This will be the default in neovim 0.7+
+--       debounce_text_changes = 150,
+--     }
+--   }
+-- end
+
+local project_library_path = "/Users/liuweilun/.nvm/versions/node/v16.14.0/lib/node_modules"
+local cmd = {"ngserver", "--stdio", "--tsProbeLocations", project_library_path , "--ngProbeLocations", project_library_path, "node", "/Users/liuweilun/.nvm/versions/node/v16.14.0/lib/node_modules/@angular/language-server", "/Users/liuweilun/.nvm/versions/node/v16.14.0/lib/node_modules/typescript"}
+
+-- angular setup 
+-- NOTE: 需要特別設定 project_library_path 以及 cmd
+-- ref.: https://www.reddit.com/r/neovim/comments/qtu5wa/cant_get_angular_language_server_work/
+require'lspconfig'.angularls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = cmd,
+  on_new_config = function(new_config,new_root_dir)
+    new_config.cmd = cmd
+  end,
+  flags = {
+    -- This will be the default in neovim 0.7+
+    debounce_text_changes = 150,
   }
-end
+}
+
+
+-- javascript and typescript setup
+require'lspconfig'.tsserver.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    -- This will be the default in neovim 0.7+
+    debounce_text_changes = 150,
+  }
+}
+
+-- css and scss setup
+require'lspconfig'.cssls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    -- This will be the default in neovim 0.7+
+    debounce_text_changes = 150,
+  }
+}
+
+-- html setup
+require'lspconfig'.emmet_ls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    -- This will be the default in neovim 0.7+
+    debounce_text_changes = 150,
+  }
+}
+
+-- vue setup
+require'lspconfig'.vuels.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    -- This will be the default in neovim 0.7+
+    debounce_text_changes = 150,
+  }
+}
+
+-- json setup
+require'lspconfig'.jsonls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    -- This will be the default in neovim 0.7+
+    debounce_text_changes = 150,
+  }
+}
+

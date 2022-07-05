@@ -15,7 +15,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
 
     -- list of language that will be disabled
-    disable = { "html" },
+    -- disable = { "html" },
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
@@ -35,7 +35,7 @@ require'nvim-treesitter.configs'.setup {
       -- Set to false if you have an `updatetime` of ~100.
       clear_on_cursor_move = true,
     },
-    highlight_current_scope = { enable = true },
+    highlight_current_scope = { enable = false },
     smart_rename = {
       enable = true,
       keymaps = {

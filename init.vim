@@ -7,6 +7,7 @@ syntax on
 
 " Better colors
 set termguicolors
+set background=dark
 
 " number of spaces in a <Tab>
 set tabstop=2
@@ -23,6 +24,8 @@ set shiftwidth=2
 " adds line numbers
 " set number
 set relativenumber
+" 在 relativenumber 模式下顯示當前的行數
+set nu rnu
 
 " columns used for the line number
 set numberwidth=4
@@ -59,7 +62,11 @@ set clipboard=unnamed
 " no swap file
 set noswapfile
 set nobackup
-set nowrap
+
+" 超過頁面會斷行
+set wrap
+" 超過 100 字元後就會斷行
+set textwidth=100
 
 " add cursorline
 set cursorline
@@ -69,6 +76,9 @@ set fileencoding=utf-8
 " cursor blinking
 set guicursor=a:blinkon100
 " set signcolumn=number
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
 
 " Folding
 " set foldmethod=indent
@@ -80,6 +90,13 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
 set spell
+
+" highlight link htmlTag htmlTagName
+" highlight link htmlEndTag htmlTagName
+hi htmlTag            guifg=#90b0d1 gui=NONE 
+hi htmlSpecialTagName guifg=#90b0d1 gui=NONE 
+hi htmlTagName        guifg=#90b0d1 gui=NONE  
+hi htmlEndTag         guifg=#90b0d1 gui=NONE
 
 " hi Visual  guifg=#000000 guibg=#FFFFFF gui=none
 call plug#begin('~/.config/nvim/plugged')
@@ -169,7 +186,13 @@ Plug 'folke/trouble.nvim'
 Plug 'frazrepo/vim-rainbow'
 
 "JSDoc
-Plug 'kkoomen/vim-doge'
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+
+"TODO highlighting
+Plug 'folke/todo-comments.nvim'
+
+Plug 'overcache/NeoSolarized'
+
 
 call plug#end()
 
@@ -208,5 +231,6 @@ vnoremap <leader>mf :!eslint_d --stdin --fix-to-stdout<CR>gv
 nnoremap <Leader>ds :lua require'telescope.builtin'.lsp_document_symbols()
 
 " To always use the snazzy color scheme
-colorscheme TeraFox
-" colorscheme github_dark
+" colorscheme TeraFox
+" colorscheme git hub_dark
+colorscheme NeoSolarized

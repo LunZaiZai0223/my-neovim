@@ -13,6 +13,7 @@ require'nvim-tree'.setup {
   ignore_buffer_on_setup = false,
   open_on_setup = false,
   open_on_tab = false,
+  reload_on_bufenter = true,
   sort_by = "name",
   update_cwd = true,
   view = {
@@ -60,7 +61,7 @@ require'nvim-tree'.setup {
     exclude = {},
   },
   git = {
-    enable = true,
+    enable = false,
     ignore = true,
     timeout = 500,
   },

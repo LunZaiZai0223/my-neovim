@@ -16,6 +16,8 @@ require('bufferline').setup {
     enforce_regular_tabs = false,
     -- hide separators
     separator_style = {'',''},
+    max_name_length = 25,
+    tab_size = 18
   },
   highlights = {
     fill = {
