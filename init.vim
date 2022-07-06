@@ -86,7 +86,10 @@ set updatetime=300
 set nofoldenable
 " set foldlevel=1
 " set foldclose=all
+" 一開始會先 fold 全部，zO 全部解開後就可以 zc / zo 了
 set foldmethod=expr
+" set foldmethod=syntax
+" set foldmethod=indent
 set foldexpr=nvim_treesitter#foldexpr()
 
 set spell
@@ -102,6 +105,9 @@ hi htmlEndTag         guifg=#90b0d1 gui=NONE
 call plug#begin('~/.config/nvim/plugged')
 
 " plugins will go here
+
+" colorschemes
+Plug 'overcache/NeoSolarized'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'projekt0n/github-nvim-theme'
 
@@ -191,8 +197,11 @@ Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 "TODO highlighting
 Plug 'folke/todo-comments.nvim'
 
-Plug 'overcache/NeoSolarized'
+" symbols
+Plug 'simrat39/symbols-outline.nvim'
 
+" lspsaga
+Plug 'kkharji/lspsaga.nvim'
 
 call plug#end()
 

@@ -17,7 +17,7 @@ local sources = {
   -- diagnostics.eslint_d,
   formatting.prettier.with({
     extra_args = {
-      "--single-quote","--print-width=120", "--prose-wrap=preserve", "--trailing-comma=es5"
+      "--single-quote","--print-width=120", "--prose-wrap=preserve", "--trailing-comma=es5", "--arrow-parens=avoid"
     }
   }),
   formatting.stylua,
