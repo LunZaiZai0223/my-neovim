@@ -227,6 +227,13 @@ nnoremap <leader>n :set hlsearch!<CR>
 nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
 " toogle better whitespace
 nnoremap <leader>b :set list!<CR>
+
+" delete all other buffers except current one
+command! BufOnly execute '%bd|e#|bd#'
+" delete all buffer (but will create a NoName buffer)
+" ref.: https://salferrarello.com/vim-close-all-buffers-except-the-current-one/
+command! BufDeleteAll execute '%bdelete'
+
 let g:strip_whitespace_confirm=0
 let g:strip_whitelines_at_eof=1
 let g:strip_whitespace_on_save=1
