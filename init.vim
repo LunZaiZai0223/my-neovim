@@ -56,6 +56,8 @@ set smartcase
 " do not show mode
 set noshowmode
 
+set showcmd
+
 " use system clipboard
 set clipboard=unnamed
 
@@ -92,7 +94,8 @@ set foldmethod=expr
 " set foldmethod=indent
 set foldexpr=nvim_treesitter#foldexpr()
 
-set spell
+" set spell
+set nospell
 
 " highlight link htmlTag htmlTagName
 " highlight link htmlEndTag htmlTagName
@@ -108,8 +111,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " colorschemes
 Plug 'overcache/NeoSolarized'
-Plug 'EdenEast/nightfox.nvim'
-Plug 'projekt0n/github-nvim-theme'
 
 " Telescope requires plenary to function
 Plug 'nvim-lua/plenary.nvim'
@@ -126,6 +127,7 @@ Plug 'lewis6991/gitsigns.nvim'
 
 " lualine
 Plug 'nvim-lualine/lualine.nvim'
+
 " If you want to have icons in your statusline choose one of these
 Plug 'kyazdani42/nvim-web-devicons'
 
@@ -200,9 +202,6 @@ Plug 'folke/todo-comments.nvim'
 " symbols
 Plug 'simrat39/symbols-outline.nvim'
 
-" lspsaga
-Plug 'kkharji/lspsaga.nvim'
-
 call plug#end()
 
 lua require('lun')
@@ -210,12 +209,12 @@ lua require('lun')
 
 " remaps
 let mapleader = ' '
-nnoremap <C-p> :Telescope find_files<Cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <C-l> :wincmd l<Cr>
-nnoremap <C-h> :wincmd h<Cr>
-nnoremap <silent><leader>[ :BufferLineCyclePrev<Cr>
-nnoremap <silent><leader>] :BufferLineCycleNext<Cr>
+nnoremap <C-p> :Telescope find_files<CR>
+nnoremap <leader>fg <CMD>Telescope live_grep<CR>
+nnoremap <C-l> :wincmd l<CR>
+nnoremap <C-h> :wincmd h<CR>
+nnoremap <silent><leader>[ :BufferLineCyclePrev<CR>
+nnoremap <silent><leader>] :BufferLineCycleNext<CR>
 
 let g:rainbow_active = 1
 
@@ -224,7 +223,7 @@ nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
 " toggle hlsearch
 nnoremap <leader>n :set hlsearch!<CR>
 " toggle trouble in current file
-nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
+nnoremap <leader>xd <CMD>TroubleToggle document_diagnostics<CR>
 " toogle better whitespace
 nnoremap <leader>b :set list!<CR>
 
@@ -244,9 +243,13 @@ let g:syntastic_javascript_eslint_exec = 'eslint_d'
 nnoremap <leader>af mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F
 vnoremap <leader>mf :!eslint_d --stdin --fix-to-stdout<CR>gv
 
-nnoremap <Leader>ds :lua require'telescope.builtin'.lsp_document_symbols()
+nnoremap <Leader>ds <CMD>:lua require'telescope.builtin'.lsp_document_symbols()<CR>
 
 " To always use the snazzy color scheme
 " colorscheme TeraFox
 " colorscheme git hub_dark
+
+" set nvim background transparent
+" let g:neosolarized_termtrans=1
+runtime ./colors/NeoSolarized.vim
 colorscheme NeoSolarized
