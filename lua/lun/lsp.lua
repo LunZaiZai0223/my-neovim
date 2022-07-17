@@ -1,12 +1,26 @@
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
--- vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
--- vim.api.nvim_set_keymap('n', '<space>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
--- vim.api.nvim_set_keymap('n', '<space>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<space>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<space>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 -- vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
-local map = vim.api.nvim_buf_set_keymap
+local function lsp_highlight_document(client)
+  -- Set autocommands conditional on server_capabilities
+  if client.resolved_capabilities.document_highlight then
+    vim.api.nvim_exec(
+      [[
+      augroup lsp_document_highlight
+      autocmd! * <buffer>
+      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+      ]],
+      false
+    )
+  end
+end
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -19,6 +33,8 @@ local on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
   end
 
+  lsp_highlight_document(client)
+
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -27,10 +43,10 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -40,39 +56,22 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   vim.api.nvim_buf_set_option(0, "formatexpr", "v:lua.vim.lsp.formatexpr()")
 
-  -- map(0, "n", "gr", "<cmd>Lspsaga rename<cr>", {silent = true, noremap = true})
-  -- map(0, "n", "gx", "<cmd>Lspsaga code_action<cr>", {silent = true, noremap = true})
-  -- map(0, "x", "gx", ":<c-u>Lspsaga range_code_action<cr>", {silent = true, noremap = true})
-  map(0, "n", "K",  "<cmd>Lspsaga hover_doc<cr>", {silent = true, noremap = true})
-  -- <space>e 查看錯誤
-  map(0, "n", "<space>e", "<cmd>Lspsaga show_line_diagnostics<cr>", {silent = true, noremap = true})
-  -- <space>pe 預覽 reference
-  map(0, "n", "<space>pe", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", {silent = true, noremap = true})
-  -- map(0, "n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", {silent = true, noremap = true})
-  -- map(0, "n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", {silent = true, noremap = true})
-  -- map(0, "n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>", {})
-  -- map(0, "n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>", {})
-
 end
-
--- vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
--- vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
--- vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
--- vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
 
 -- diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        -- Disable underline, it's very annoying
-        underline = false,
-        virtual_text = true,
-        -- Enable virtual text, override spacing to 4
-        virtual_text = { spacing = 4 },
-        -- Use a function to dynamically turn signs off
-        -- and on, using buffer local variables
-        signs = true,
-        update_in_insert = false,
-    })
+vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  -- Disable underline, it's very annoying
+  underline = false,
+  -- Enable virtual text, override spacing to 4
+  virtual_text = { spacing = 4, prefix = ''},
+  -- find more here: https://www.nerdfonts.com/cheat-sheet
+  -- Use a function to dynamically turn signs off
+  -- and on, using buffer local variables
+  signs = true,
+  update_in_insert = false,
+  severity_sort = true,
+})
 
 -- Diagnostic signs
 local diagnostic_signs = {
@@ -85,20 +84,18 @@ for _, sign in ipairs(diagnostic_signs) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
 end
 
--- Diagnostic configuration
--- vim.diagnostic.config(lsp.diagnostic)
-
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- luasnip setup
-local luasnip = require 'luasnip'
+local luasnip = require ('luasnip')
 
 -- lspkind
 local lspkind = require('lspkind')
+
 -- nvim-cmp setup
-local cmp = require 'cmp'
+local cmp = require ('cmp')
 
 -- spell cmp
 vim.opt.spell = true
@@ -141,13 +138,13 @@ cmp.setup {
     end,
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'path' },
-    { name = 'buffer', keyword_length = 5},
-    { name = "spell" },
+  { name = 'nvim_lsp' },
+  { name = 'luasnip' },
+  { name = 'path' },
+  { name = 'buffer', keyword_length = 5},
+  { name = "spell" },
   },
-    formatting = {
+  formatting = {
     format = lspkind.cmp_format({
       mode = 'symbol_text',
       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
@@ -164,10 +161,13 @@ cmp.setup {
       end
     })
   },
-
+  documentation = {
+    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  },
   experimental = {
-    -- ghost_text = true,
-  }
+    ghost_text = false,
+    native_menu = false,
+  },
 }
 
 -- languags setup
