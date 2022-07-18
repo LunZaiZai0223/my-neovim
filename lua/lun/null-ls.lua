@@ -1,14 +1,8 @@
--- require("null-ls").setup({
---   sources = {
---     -- require("null-ls").builtins.formatting.stylua,
---     require("null-ls").builtins.diagnostics.eslint_d,
---     -- require("null-ls").builtins.completion.spell,
---   },
--- })
-
 local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
+local code_actions = null_ls.builtins.code_actions
+-- local completion = null_ls.builtins.completion
 
 -- 公司會用的 prettier setting:
 -- "--print-width 120", "--arrow-parens avoid", "--prose-wrap=preserve", "--trailing-comma=es5"
@@ -21,6 +15,9 @@ local sources = {
     }
   }),
   formatting.stylua,
+  code_actions.gitsigns
+  -- completion.spell
+
 }
 
 null_ls.setup({

@@ -1,7 +1,11 @@
 require('lun/telescope')
 require('lun/gitsigns')
 require('lun/lualine')
+
 require('lun/lsp')
+-- require('lun/lsp/init.lua')
+-- require('lun/cmp??')
+
 require('lun/treesitter')
 require('lun/bufferline')
 require('lun/nvim-tree')
@@ -9,13 +13,11 @@ require('lun/nvim-autopairs')
 require('lun/indent-blankline')
 require('lun/colorizer')
 require('lun/lsp-colors')
-require('lun/colorscheme')
 require('lun/comment')
 require('lun/null-ls')
 require('lun/trouble')
 require('lun/lsp-signature')
 require('lun/todo-comments')
-require('lun/lspsaga')
 
 -- symbols-outlines setup
 vim.g.symbols_outline = {

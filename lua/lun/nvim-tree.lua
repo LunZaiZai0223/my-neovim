@@ -1,12 +1,12 @@
 -- must be set before calling require
-vim.g.nvim_tree_indent_markers = 1 -- this option shows indent markers when folders are open
+-- vim.g.nvim_tree_indent_markers = 1 -- this option shows indent markers when folders are open
 
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
 require'nvim-tree'.setup {
   auto_reload_on_write = true,
   disable_netrw = false,
-  hide_root_folder = false,
+  hide_root_folder = true,
   hijack_cursor = false,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
@@ -17,9 +17,9 @@ require'nvim-tree'.setup {
   sort_by = "name",
   update_cwd = true,
   view = {
-    width = 30,
+    width = 50,
     height = 30,
-    side = "left",
+    side = "right",
     preserve_window_proportions = false,
     number = false,
     relativenumber = false,

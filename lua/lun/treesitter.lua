@@ -1,4 +1,9 @@
-require'nvim-treesitter.configs'.setup {
+local status_ok, configs = pcall(require, "nvim-treesitter.configs")
+if not status_ok then
+  return
+end
+
+configs.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = {
     "css", "vim", "lua", "javascript", "typescript", "tsx", "scss", "vue", "json", "html", "lua"
@@ -26,6 +31,9 @@ require'nvim-treesitter.configs'.setup {
   indent = {
     enable = true
   },
+  autopairs = {
+    enable = true,
+  },
   autotag = {
     enable = true,
   },
@@ -49,7 +57,11 @@ require'nvim-treesitter.configs'.setup {
     disalbe = { "html" },
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    -- colors = {}, -- table of hex strings
+    colors = {
+      "#68a0b0",
+      "#946EaD",
+      "#c7aA6D",
+    },
     -- termcolors = {} -- table of colour name strings
   },
   incremental_selection = {
@@ -62,6 +74,10 @@ require'nvim-treesitter.configs'.setup {
     },
   },
   context_commentstring = {
-    enable = true
-  }
+    enable = true,
+    enable_autocmd = false,
+  },
+  playground = {
+    enable = true,
+  },
 }
