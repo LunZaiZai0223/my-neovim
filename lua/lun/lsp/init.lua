@@ -1,7 +1,11 @@
 -- 待完成
-local status_ok, _ = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
+-- local status_ok, _ = pcall(require, "lspconfig")
+-- if not status_ok then
+--   return
+-- end
 
-require('')
+-- require('')
+-- 似乎不能直接用 path 的方式引用進來 ....
+-- require('~/.config/nvim/lua/lun/lsp/lsp-installer.lua')
+-- require("./lsp-installer.lua")
+-- require("./handlers.lua").setup()
