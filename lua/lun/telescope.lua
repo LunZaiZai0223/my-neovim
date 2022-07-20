@@ -5,6 +5,8 @@ end
 
 -- local telescope = require('telescope')
 
+local actions = require "telescope.actions"
+
 telescope.setup {
   defaults = { 
     file_ignore_patterns = {"node_modules", ".git/" }, 
@@ -15,18 +17,21 @@ telescope.setup {
       height = 0.95,
       prompt_position = 'top',
     },
+    mappings = {
+      i = {
+        -- map actions.which_key to <C-h> (default: <C-/>)
+        -- actions.which_key shows the mappings for your picker,
+        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+        ["gg"] = actions.move_to_top,
+        ["G"] = actions.move_to_bottom,
+        ["<C-n>"] = actions.cycle_history_next,
+        ["<C-p>"] = actions.cycle_history_prev,
+      }
+    }
   },
   pickers = {
     find_files = {
       hidden = true,
-    },
-  },
-  extensions = {
-    media_files = {
-      -- filetypes whitelist
-      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-      filetypes = { "png", "webp", "jpg", "jpeg" },
-      find_cmd = "rg", -- find command (defaults to `fd`)
     },
   },
 }

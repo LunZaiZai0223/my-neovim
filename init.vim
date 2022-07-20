@@ -133,6 +133,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 
 " lsp
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 
 " lsp better signature
 Plug 'ray-x/lsp_signature.nvim'
@@ -209,10 +210,10 @@ lua require('lun')
 
 " remaps
 let mapleader = ' '
-nnoremap <C-p> :Telescope find_files<CR>
-nnoremap <leader>fg <CMD>Telescope live_grep<CR>
-nnoremap <C-l> :wincmd l<CR>
-nnoremap <C-h> :wincmd h<CR>
+nnoremap ;l :wincmd l<CR>
+nnoremap ;h :wincmd h<CR>
+nnoremap ;j :wincmd j<CR>
+nnoremap ;k :wincmd k<CR>
 nnoremap <silent><leader>[ :BufferLineCyclePrev<CR>
 nnoremap <silent><leader>] :BufferLineCycleNext<CR>
 
@@ -240,10 +241,14 @@ let g:strip_whitespace_on_save=1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
 " 更改快捷鍵
+" <leader>af formatting by eslint
 nnoremap <leader>af mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F
 vnoremap <leader>mf :!eslint_d --stdin --fix-to-stdout<CR>gv
 
 nnoremap <Leader>ds <CMD>:lua require'telescope.builtin'.lsp_document_symbols()<CR>
+nnoremap <Leader>ad <CMD>:lua require'telescope.builtin'.diagnostics()<CR>
+nnoremap <C-p> <CMD>:Telescope find_files<CR>
+nnoremap <leader>fg <CMD>Telescope live_grep<CR>
 
 " To always use the snazzy color scheme
 " colorscheme TeraFox
