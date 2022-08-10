@@ -80,4 +80,17 @@ configs.setup {
   playground = {
     enable = true,
   },
+  tree_docs = {
+    enable = true,
+    spec_config = {
+      jsdoc = {
+        slots = {
+          class = {author = true}
+        }
+      }
+    },
+    keymaps = {
+      doc_node_at_cursor = '<space>d'
+    }
+  }
 }

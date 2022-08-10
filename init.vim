@@ -152,6 +152,7 @@ Plug 'f3fora/cmp-spell'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
+Plug 'nvim-treesitter/nvim-tree-docs'
 Plug 'windwp/nvim-ts-autotag'
 
 " Buffer
@@ -193,9 +194,6 @@ Plug 'kamykn/spelunker.vim'
 Plug 'folke/trouble.nvim'
 
 Plug 'frazrepo/vim-rainbow'
-
-"JSDoc
-Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 "TODO highlighting
 Plug 'folke/todo-comments.nvim'
