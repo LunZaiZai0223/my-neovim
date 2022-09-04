@@ -3,13 +3,11 @@ if not status_ok then
   return
 end
 
--- local telescope = require('telescope')
-
 local actions = require "telescope.actions"
 
 telescope.setup {
-  defaults = { 
-    file_ignore_patterns = {"node_modules", ".git/" }, 
+  defaults = {
+    file_ignore_patterns = { "node_modules", ".git/" },
     layout_strategy = "vertical",
     selection_caret = " ",
     path_display = { "smart" },
