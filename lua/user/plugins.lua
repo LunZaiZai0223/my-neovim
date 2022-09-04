@@ -72,6 +72,7 @@ return packer.startup(function(use)
     requires = "nvim-lua/plenary.nvim",
   }
   use "kamykn/spelunker.vim" -- spell check
+  use "RRethy/vim-illuminate"
 
   -- Lazy loading:
   -- Load on specific commands

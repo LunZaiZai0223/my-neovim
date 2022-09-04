@@ -31,7 +31,6 @@ keymap("n", "<leader>fg", "<CMD>Telescope live_grep<CR>", opts)
 keymap("n", "<leader>t", "<CMD>:NvimTreeToggle<CR>", opts)
 
 -- Formatting
--- 但是現在有些問題 ==
 keymap("n", "<leader>f", "<CMD>:Format<CR>", opts)
 
 -- Visual --

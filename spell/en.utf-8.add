@@ -48,3 +48,6 @@ keymap
 noremap
 bufnr
 colorscheme
+xaxis
+yaxis
+autotag
