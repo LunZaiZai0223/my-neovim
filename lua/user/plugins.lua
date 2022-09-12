@@ -73,6 +73,7 @@ return packer.startup(function(use)
   }
   use "kamykn/spelunker.vim" -- spell check
   use "RRethy/vim-illuminate"
+  use "lukas-reineke/indent-blankline.nvim" -- indent
 
   -- Lazy loading:
   -- Load on specific commands
