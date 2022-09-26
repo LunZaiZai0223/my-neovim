@@ -15,11 +15,14 @@ M.setup = function()
   end
 
   local config = {
-    virtual_text = {
-      spacing = 4,
-      prefix = "",
-      source = "always", -- Or "if_many"
-    },
+    -- virtual_text = {
+    --   spacing = 4,
+    --   prefix = "",
+    --   source = "always", -- Or "if_many"
+    -- },
+    -- disable virtual text
+    virtual_lines = false,
+    virtual_text = false,
     -- show signs
     signs = {
       active = signs
