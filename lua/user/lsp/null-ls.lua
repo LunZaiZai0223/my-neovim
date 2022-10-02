@@ -44,7 +44,7 @@ null_ls.setup {
     -- null_ls.builtins.diagnostics.eslint_d,
     -- null_ls.builtins.code_actions.eslint_d,
   },
-  -- auto on save
+  -- auto format on save
   on_attach = function(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
       vim.api.nvim_clear_autocmds { buffer = 0, group = augroup_format }
