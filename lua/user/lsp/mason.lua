@@ -57,10 +57,9 @@ for _, server in pairs(servers) do
   end
 
 
-  if server.name == "sumneko_lua" then
+  if server == "sumneko_lua" then
     local sumneko_opts = require("user.lsp.settings.sumneko_lua")
     opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-    print("lua")
     goto continue
   end
 
@@ -71,10 +70,10 @@ for _, server in pairs(servers) do
   end
 
 
-  -- if server == "emmet_ls" then
-  --   local emmet_ls_opts = require "user.lsp.settings.emmet_ls"
-  --   opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
-  -- end
+  if server == "emmet_ls" then
+    local emmet_ls_opts = require "user.lsp.settings.emmet_ls"
+    opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
+  end
 
   lspconfig[server].setup(opts)
   ::continue::
